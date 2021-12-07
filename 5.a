@@ -1,4 +1,9 @@
 5.a) Write a shell script that determines the period for which a specified user is working on the system.
+
+[20A91A05D7@Linux ~]$ vi 5.a.sh
+
+program:
+
 echo enter the user name :
 read usr
 n=`who|wc -l`
@@ -36,6 +41,7 @@ fi
 
 
 output:
+
 enter the user name :
 20A91A05D7
 user name : 20A91A05D7
