@@ -1,5 +1,8 @@
 12)Write a shell script to display factorial value from given argument list.
+
 [20A91A05D7@Linux ~]$ vi 12.sh
+
+program:
 
 fact=1
 factorial_function()
@@ -14,6 +17,7 @@ factorial_function $1
 echo "Factorial of $1 is $fact"
 
 output:
+
 [20A91A05D7@Linux ~]$ sh 12.sh 4
 Factorial of 4 is 24
 [20A91A05D7@Linux ~]$ sh 12.sh 6
