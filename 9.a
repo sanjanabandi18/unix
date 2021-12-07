@@ -1,0 +1,28 @@
+9.a)Write shell script that takes a login name as command – line argument and
+reports when that person logs in.
+
+[20A91A05D7@Linux ~]$ vi 9.a.sh
+
+program:
+
+if [ $# -ne 1 ]
+then
+        echo Give login name as command line argument
+        exit
+fi
+n=`who|wc -l`
+for((i=l;i<=$n;i++))
+do
+tuser=`who|tr -s " "|head -$i|tail -1|cut -d " " -f1`
+if [ "$tuser" = "$1" ]
+then
+tm=`who|tr -s " "|head -1|cut -d " " -f4`
+echo "$1 has logged at $tm"
+fi
+done
+
+output:
+
+[20A91A05D7@Linux ~]$ sh 9.a.sh 20A91A05D7
+20A91A05D7 has logged at 11:17
+
