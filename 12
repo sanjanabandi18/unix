@@ -1,0 +1,21 @@
+12)Write a shell script to display factorial value from given argument list.
+[20A91A05D7@Linux ~]$ vi 12.sh
+
+fact=1
+factorial_function()
+{
+if [ $1 -gt 1 ];
+then
+let "fact*= $1"
+factorial_function $(($1-1))
+fi
+}
+factorial_function $1
+echo "Factorial of $1 is $fact"
+
+output:
+[20A91A05D7@Linux ~]$ sh 12.sh 4
+Factorial of 4 is 24
+[20A91A05D7@Linux ~]$ sh 12.sh 6
+Factorial of 6 is 720
+
