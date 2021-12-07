@@ -1,0 +1,49 @@
+5.a) Write a shell script that determines the period for which a specified user is working on the system.
+echo enter the user name :
+read usr
+n=`who|wc -l`
+for ((i=1;i<=$n;i++));
+do
+#echo "n=$n"
+tuser=`who|tr -s " "| head -$i|tail -1|cut -d " " -f1`
+#echo "current user is $tuser"
+if [ "$tuser" = "$usr" ]
+then
+#echo "user is $tuser"
+tm=`who|tr -s " "|head -$i|tail -1|cut -d " " -f4`
+uhr=`echo $tm|cut -d ":" -f1`
+umin=`echo $tm|cut -d ":" -f2`
+shr=`date "+%H"`
+smin=`date "+%M"`
+if [ $smin -lt $umin ]
+then
+shr=`expr $shr - 1`
+smin=`expr $smin + 60`
+fi
+h=`expr $shr - $uhr`
+m=`expr $smin - $umin`
+echo "user name : $usr"
+echo "login period : $h : $m"
+exit
+#else
+#echo invalid user
+fi
+done
+if [ $tuser -ne $usr ]
+then
+echo "Invalid user"
+fi
+
+
+output:
+enter the user name :
+20A91A05D7
+user name : 20A91A05D7
+login period : 0 : 52
+
+[20A91A05D7@Linux ~]$ sh 5.a.sh
+enter the user name :
+20A91A05G1
+user name : 20A91A05G1
+login period : 0 : 57
+
