@@ -1,0 +1,37 @@
+echo 1.copy
+echo 2.rename
+echo 3.remove
+echo 4.link
+echo 5.exit
+echo "enter your choice"
+read ch
+case $ch in
+1) echo "enter the source file name"
+read s
+echo "enter the destination file name"
+read d
+cp $s $d
+;;
+2) echo "enter old file name"
+read of
+echo "enter new file name"
+read nf
+mv $of $nf
+;;
+3) echo "enter file name"
+read df
+rm $df
+;;
+4) echo "enter file1"
+read f1
+echo "enter file2"
+read f2
+ln $f1 $f2
+;;
+5) exit 0
+;;
+esac
+
+
+output:
+
