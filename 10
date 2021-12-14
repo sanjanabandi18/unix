@@ -1,0 +1,56 @@
+10. Write a C program that takes one or more file or directory names as a
+command line input and reports the following information on the file:
+i) File type.
+ii) Number of links.
+iii) Read, write and execute permissions.
+iv) Time of last access (Note : Use stat/fstat system calls).
+
+program:
+
+#include<stdio.h>
+#include<unistd.h>
+#include<sys/stat.h>
+#include<sys/types.h>
+#include<fcntl.h>
+void main()
+{
+ int fd;
+struct stat buf;
+fd=open("12.sh",O_RDONLY|O_CREAT,600);
+if(fd!=-1)
+{
+ if(fstat(fd,&buf)==0)
+{
+printf("mode of file is %u",buf.st_mode);
+printf("\n size of the file is %u",buf.st_size);
+printf("\n device name %u",buf.st_dev);
+printf("\n inode of file is %u",buf.st_ino);
+printf("\n no.of links are %u",buf.st_nlink);
+printf("\n owner of a file is %u",buf.st_uid);
+printf("\n no.of blocks is %u",buf.st_blocks);
+printf("\n group owner is %u",buf.st_gid);
+printf("\n blocks size of the file is %u",buf.st_blksize);
+printf("\n time of last modified is %u",buf.st_ctime);
+}
+else
+printf("error in fstat() syscall");
+}
+else
+printf("error in open() sys call");
+}
+
+output:
+
+[20A91A05D7@Linux ~]$ vi 10.c
+[20A91A05D7@Linux ~]$ cc 10.c
+[20A91A05D7@Linux ~]$ ./a.out
+mode of file is 33204
+ size of the file is 156
+ device name 2054
+ inode of file is 125612
+ no.of links are 1
+ owner of a file is 9393
+ no.of blocks is 8
+ group owner is 9394
+ blocks size of the file is 4096
+ time of last modified is 1638857803
