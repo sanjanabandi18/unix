@@ -26,3 +26,59 @@ output:
 [20A91A05D7@Linux ~]$ sh 9.a.sh 20A91A05D7
 20A91A05D7 has logged at 11:17
 
+
+9.b)Write a shell script which receives two file names as arguments. It should
+check whether the two file contents are same or not. If they are same then
+second file should be deleted.
+
+
+program:
+
+
+echo enter first file
+read f1
+echo enter second file
+read f2
+`cmp $f1 $f2>equal`
+if [ ! -s equal ]
+then
+echo files are equal
+rm $f2
+echo removed $f2
+else
+echo files are not equal
+fi
+
+
+
+output:
+
+
+[20A91A05D7@Linux ~]$ cat ramu
+hi
+hello
+i am ramu
+[20A91A05D7@Linux ~]$ cp ramu krishna
+[20A91A05D7@Linux ~]$ cat krishna
+hi
+hello
+i am ramu
+[20A91A05D7@Linux ~]$ sh 9.b.sh
+enter first file
+ramu
+enter second file
+krishna
+files are equal
+removed krishna
+[20A91A05D7@Linux ~]$ cat xyz
+cat: xyz: No such file or directory
+[20A91A05D7@Linux ~]$ cat>xyz
+1
+2
+3
+[20A91A05D7@Linux ~]$ sh 9.b.sh
+enter first file
+ramu
+enter second file
+xyz
+files are not equal
