@@ -1,0 +1,64 @@
+7.a)Write a shell script that accepts two integers as its arguments and computes
+the value of first number raised to the power of the second number.
+
+program:
+
+if [ $# -ne 2 ]
+then
+echo "invalid number of arguments"
+exit
+fi
+pwr=`echo $1^$2|bc`
+echo "$1 raised to $2 is $pwr"
+
+
+output:
+
+
+[20A91A05D7@Linux ~]$ vi 7a.sh
+[20A91A05D7@Linux ~]$ sh 7a.sh 4 2
+4 raised to 2 is 16
+[20A91A05D7@Linux ~]$ sh 7a.sh 3 3
+3 raised to 3 is 27
+
+
+7.b)Write a shell script which will display Armstrong number from given
+arguments.
+
+program:
+
+echo "enter a number"
+read c
+x=$c
+sum=0
+r=0
+n=0
+while [ $x -gt 0 ]
+do
+r=`expr $x % 10`
+n=`expr $r \* $r \* $r`
+sum=`expr $sum + $n`
+x=`expr $x / 10`
+done
+if [ $sum -eq $c ]
+then
+echo "It is an Armstrong Number."
+else
+echo "It is not an Armstrong Number."
+fi
+
+
+output:
+
+
+
+[20A91A05D7@Linux ~]$ vi 7.b.sh
+[20A91A05D7@Linux ~]$ sh 7.b.sh
+enter a number
+153
+It is an Armstrong Number.
+[20A91A05D7@Linux ~]$ sh 7.b.sh
+enter a number
+234
+It is not an Armstrong Number.
+
