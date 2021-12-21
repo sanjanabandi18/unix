@@ -1,0 +1,84 @@
+5.a) Write a shell script that determines the period for which a specified user is
+working on the system.
+
+
+program:
+
+echo enter the user name :
+read usr
+n=`who|wc -l`
+for ((i=1;i<=$n;i++));
+do
+#echo "n=$n"
+tuser=`who|tr -s " "| head -$i|tail -1|cut -d " " -f1`
+#echo "current user is $tuser"
+if [ "$tuser" = "$usr" ]
+then
+#echo "user is $tuser"
+tm=`who|tr -s " "|head -$i|tail -1|cut -d " " -f4`
+uhr=`echo $tm|cut -d ":" -f1`
+umin=`echo $tm|cut -d ":" -f2`
+shr=`date "+%H"`
+smin=`date "+%M"`
+if [ $smin -lt $umin ]
+then
+shr=`expr $shr - 1`
+smin=`expr $smin + 60`
+fi
+h=`expr $shr - $uhr`
+m=`expr $smin - $umin`
+echo "user name : $usr"
+echo "login period : $h : $m"
+exit
+#else
+#echo invalid user
+fi
+done
+if [ $tuser -ne $usr ]
+then
+echo "Invalid user"
+fi
+
+
+
+output:
+
+
+[20A91A05D7@Linux ~]$ vi 5.a.sh
+[20A91A05D7@Linux ~]$ sh 5.a.sh 20A91A05D7
+enter the user name :
+20A91A05D7
+user name : 20A91A05D7
+login period : 0 : 56
+
+
+5.b)Write a shell script that accepts a file name starting and ending line numbers
+as arguments and displays all the lines between the given line numbers.
+
+
+program:
+
+echo "Enter file name"
+read file
+echo "Enter the strating line"
+read s
+echo "Enter the ending line"
+read n
+sed -n $s,$n\p $file|cat>newline
+cat newline
+
+
+output:
+
+
+[20A91A05D7@Linux ~]$ vi 5d.sh
+[20A91A05D7@Linux ~]$ sh 5d.sh
+Enter file name
+file
+Enter the strating line
+3
+Enter the ending line
+5
+welcome
+to
+unix
