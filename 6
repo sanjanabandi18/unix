@@ -1,0 +1,43 @@
+6)Write a shell script that computes the gross salary of a employee according to the
+following rules:
+i) If basic salary is < 1500 then HRA =10% of the basic and DA =90% of the
+basic.
+ii) If basic salary is >=1500 then HRA =Rs500 and DA=98% of the basic. The
+basic salary is entered interactively through the key board.
+
+
+
+program:
+
+echo Enter basic salary
+read bs
+if [ $bs -lt 1500 ]
+then
+hra=`echo $bs\*10/100|bc`
+da=`echo $bs\*90/100|bc`
+else
+hra=500
+da=`echo $bs\*98/100|bc`
+fi
+gs=`echo $bs+$hra+$da|bc`
+echo "DA $da"
+echo "HRA $hra"
+echo "gross salary $gs"
+
+
+
+output:
+
+[20A91A05D7@Linux ~]$ vi salary.sh
+[20A91A05D7@Linux ~]$ sh salary.sh
+Enter basic salary
+1000
+DA 900
+HRA 100
+gross salary 2000
+[20A91A05D7@Linux ~]$ sh salary.sh
+Enter basic salary
+2000
+DA 1960
+HRA 500
+gross salary 4460
