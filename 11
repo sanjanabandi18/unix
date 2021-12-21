@@ -1,0 +1,47 @@
+Write  a C program that illustrates how an orphan is created.
+
+program:
+
+
+#include<stdio.h>
+main()
+{
+int pid;
+printf("I am the original process with PID %d and PPID %d.\n",getpid(),getppid());
+pid=fork();
+if(pid!=0)
+{
+printf("I am the parent with PID %d and PPID %d.\n",getpid(),getppid());
+printf("My child's PID is %d\n",pid);
+}
+else
+{
+sleep(4);
+printf("I am the child with PID %d and PPID %d.\n",getpid(),getppid());
+}
+printf("PID %d terminates.\n",getpid());
+}
+
+
+output:
+
+
+[20A91A05D7@Linux ~]$ vi 11.c
+[20A91A05D7@Linux ~]$ cc 11.c
+[20A91A05D7@Linux ~]$ ./a.out
+I am the original process with PID 14114 and PPID 13978.
+I am the parent with PID 14114 and PPID 13978.
+My child's PID is 14115
+PID 14114 terminates.
+[20A91A05D7@Linux ~]$ I am the child with PID 14115 and PPID 1.
+PID 14115 terminates.
+^C
+[20A91A05D7@Linux ~]$ vi 11.c
+[20A91A05D7@Linux ~]$ cc 11.c
+[20A91A05D7@Linux ~]$ ./a.out
+I am the original process with PID 14908 and PPID 13978.
+I am the parent with PID 14908 and PPID 13978.
+My child's PID is 14909
+PID 14908 terminates.
+[20A91A05D7@Linux ~]$ I am the child with PID 14909 and PPID 1.
+PID 14909 terminates.
