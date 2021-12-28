@@ -1,0 +1,92 @@
+
+ Experiment No:4
+4.a) Write a shell script that takes a command –line argument and reports on whether it is directory, a file or something else.
+Aim: To write a shell script that takes a command –line argument and reports on whether it is directory, a file or something else.
+Description:
+Shells are interactive that mean, they accept command as input from users and execute them. As shell can also take commands as input from file we can write these commands in a file and can execute them in shell to avoid this repetitive work. These files are called Shell Scripts or Shell Programs.  Each shell script is saved with .sh file extension
+eg. myscript.sh
+•	Shell Keywords – if, else, break etc.
+•	Shell commands – cd, ls, echo, pwd, touch etc.
+•	Functions
+•	Control flow – if..then..else, case and shell loops etc.
+if..elif..else..fi statement (Else If ladder)
+To use multiple conditions in one if-else block, then elif keyword is used in shell. If expression1 is true then it executes statement 1 and 2, and this process continues. If none of the condition is true then it processes else part.
+Syntax:
+if [ expression1 ]
+then
+   statement1
+   statement2
+   .
+   .
+elif [ expression2 ]
+then
+   statement3
+   statement4
+   .
+   .
+else
+   statement5
+fi
+
+Press  i to insert text in the vi editor.To return back to the shell prompt press  esc:wq.
+Program:
+ echo "Enter a file name:"
+read file
+if [ -f $file ]
+then
+ echo "File"
+elif [ -d $file ]
+then
+ echo "Directory"
+else echo "File or Directory not exists"
+fi
+
+ 
+Output:
+ 
+
+[20A91A05D7@Linux ~]$ sh 4a.sh
+Enter a file name:
+2csec
+Directory
+[20A91A05D7@Linux ~]$ sh 4a.sh
+Enter a file name:
+abc
+File
+[20A91A05D7@Linux ~]$ sh 4a.sh
+Enter a file name:
+sanjana
+File or Directory not exists
+
+
+
+
+4.b) Write a shell script that accepts one or more file name as arguments and converts all of them to uppercase provided they exist in the current directory.
+Aim:
+To write a shell script that accepts one or more file name as arguments and converts all of them to 
+uppercase provided they exist in the current directory.
+Description:
+The tr command in UNIX is a command line utility for translating or deleting characters. It supports a range of transformations including uppercase to lowercase, squeezing repeating characters, deleting specific characters and basic find and replace. It can be used with UNIX pipes to support more complex translation. tr stands for translate.
+Syntax :
+$ tr [OPTION] SET1 [SET2]
+To convert from lower case to upper case the predefined sets in tr can be used.
+Program:
+ # get filename
+for var in $1 $2
+do
+tr '[a-z]' '[A-Z]'<$var
+done
+
+
+ 
+Output:
+ 
+[20A91A05D7@Linux ~]$ vi 4b.sh
+[20A91A05D7@Linux ~]$ sh 4b.sh 4b.sh
+# GET FILENAME
+FOR VAR IN $1 $2
+DO
+TR '[A-Z]' '[A-Z]'<$VAR
+DONE
+
+
